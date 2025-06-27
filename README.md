@@ -95,7 +95,8 @@ Feel free to suggest improvements, raise issues, or contribute new project ideas
 ## 🧑‍💻 Author
 
 **Kajol Sutra Dhar**  
-🌐 [Portfolio Website](https://the-sankari.github.io/kajol_sutra_dhar_bc/)  
+🌐 [Portfolio Website](https://kajol-sutra-dhar.vercel.app/
+)  
 📫 Email: kajol.sd777@gmail.com  
 🧰 Tools: HTML, CSS, JS, React, Firebase, Tailwind
 
