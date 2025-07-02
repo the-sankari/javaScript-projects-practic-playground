@@ -24,6 +24,9 @@ window.addEventListener("load", () => {
 
 // Optional: Reset the count when the user double-clicks on the count display
 countDisplay.addEventListener("dblclick", () => {
+  const confirmReset = confirm("Are you sure you want to reset the count?");
+  if (!confirmReset) return; // If the user cancels, do nothing
+  // Reset the count to 0
   count = 0;
   updateCountDisplay();
 });
@@ -47,11 +50,18 @@ resetButton.id = "reset";
 document.getElementById("btn-container").appendChild(resetButton);
 
 resetButton.addEventListener("click", () => {
-    const confirmReset = confirm("Are you sure you want to reset the count?");
+  const confirmReset = confirm("Are you sure you want to reset the count?");
   if (!confirmReset) return; // If the user cancels, do nothing
   // Reset the count to 0
-  count = 0;
-  updateCountDisplay();
+  if (confirmReset) {
+    count = 0;
+    updateCountDisplay();
+    if (autoButton) {
+      clearInterval(autoInterval);
+      autoInterval = null;
+      autoButton.textContent = "Start Auto";
+    }
+  }
 });
 
 // Show the reset button when the count is not zero
@@ -66,4 +76,23 @@ function updateCountDisplay() {
   setTimeout(() => countDisplay.classList.remove("changed"), 150);
 }
 
+const autoButton = document.createElement("button");
+autoButton.textContent = "Auto";
+autoButton.id = "auto";
+document.getElementById("btn-container").appendChild(autoButton);
 
+let autoInterval = null;
+
+autoButton.addEventListener("click", () => {
+  if (autoInterval) {
+    clearInterval(autoInterval);
+    autoInterval = null;
+    autoButton.textContent = "Start Auto";
+  } else {
+    autoInterval = setInterval(() => {
+      count++;
+      updateCountDisplay();
+    }, 1000);
+    autoButton.textContent = "Stop Auto";
+  }
+});
