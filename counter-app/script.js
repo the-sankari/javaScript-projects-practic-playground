@@ -130,6 +130,7 @@ gameButton.addEventListener("click", () => {
   updateCountDisplay();
   gameActive = true;
   timeLeft = gameDuration;
+  setProgress(100); // Reset progress circle
   gameMessage.textContent = `🎯 Reach ${targetCount} in ${gameDuration} seconds!`;
   gameButton.disabled = true;
 
@@ -137,6 +138,8 @@ gameButton.addEventListener("click", () => {
 
   gameTimer = setInterval(() => {
     timeLeft--;
+    const progressPercent = (timeLeft / gameDuration) * 100;
+    setProgress(progressPercent);
     gameMessage.textContent = `⏳ Time left: ${timeLeft}s – Goal: ${targetCount}`;
     if (count >= targetCount) {
       endGame(true);
@@ -165,7 +168,7 @@ function endGame(won) {
 function enableButtons(state) {
   increaseButton.disabled = !state;
   decreaseButton.disabled = !state;
-  resetButton.disabled = !state;
+  resetButton.disabled = state;
 }
 
 // Initialize on load
@@ -175,3 +178,14 @@ window.addEventListener("load", () => {
   updateCountDisplay();
 });
 
+const progressCircle = document.querySelector(".progress-ring__circle");
+const radius = progressCircle.r.baseVal.value;
+const circumference = 2 * Math.PI * radius;
+
+progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+progressCircle.style.strokeDashoffset = `${circumference}`;
+
+function setProgress(percent) {
+  const offset = circumference - (percent / 100) * circumference;
+  progressCircle.style.strokeDashoffset = offset;
+}

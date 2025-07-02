@@ -58,3 +58,15 @@
   transform: scale(1.2);
   transition: transform 0.15s ease-in-out;
 }
+
+#progress-container {
+  margin-top: 20px;
+  height: 120px;
+  width: 120px;
+}
+
+.progress-ring_circle {
+  transition: stroke-dashoffset 1s linear;
+  transform: rotate(-90deg);
+  transform: 50% 50%;
+}
