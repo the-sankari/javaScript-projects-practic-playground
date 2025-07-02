@@ -1,28 +1,112 @@
-body {
-  font-family: sans-serif;
-  background-color: #f9f9f9;
-  padding: 20px;
-  text-align: center;
-}
-ul {
-  list-style: none;
-  padding: 0;
-}
-li {
-  margin: 10px 0;
-}
-a {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: #0077cc;
-}
-a:hover {
-  text-decoration: underline;
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@600&display=swap");
+
+:root {
+  --bg-color: #0d0f1a;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-color: #e5e5e5;
+  --accent-color: #00ffe1;
+  --border-color: rgba(0, 255, 225, 0.3);
+  --shadow-color: rgba(0, 255, 225, 0.25);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 6px var(--accent-color);
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* Project Grid Layout */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+/* Project Card */
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 25px var(--accent-color);
+}
+
+/* Project Image */
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Title */
+.project-card h3 {
+  color: var(--accent-color);
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+/* Description + Category */
+.project-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+/* Button Link */
+.project-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0.4rem 1.2rem;
+  background: var(--accent-color);
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 0 10px var(--accent-color);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.project-card a:hover {
+  background: #ffffff;
+  color: #000;
+  transform: scale(1.05);
 }
