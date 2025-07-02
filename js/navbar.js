@@ -1,11 +1,11 @@
 async function loadNavbar() {
   try {
-    const res = await fetch("/components/navbar.html");
+    const res = await fetch("./components/navbar.html");
     const html = await res.text();
     document.getElementById("navbar-placeholder").innerHTML = html;
 
     const dropdown = document.getElementById("projectDropdown");
-    const projectRes = await fetch("/data/projects.json");
+    const projectRes = await fetch("./data/projects.json");
     const projects = await projectRes.json();
 
     // Optional: sort projects by name
@@ -14,7 +14,7 @@ async function loadNavbar() {
     projects.forEach((project) => {
       const li = document.createElement("li");
       const link = document.createElement("a");
-      link.href = `/${project.url}`;
+      link.href = `./${project.url}`;
       link.textContent = project.name;
       li.appendChild(link);
       dropdown.appendChild(li);
