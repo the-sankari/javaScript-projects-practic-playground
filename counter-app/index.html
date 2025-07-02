@@ -4,17 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Counter App</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="container">
       <h1>Counter App</h1>
       <div class="btn-container" id="btn-container">
         <button id="decrease">-</button>
-        <span id="count" aria-live="polite">0</span>
+        <span id="count">0</span>
         <button id="increase">+</button>
       </div>
+      <div id="game-message"></div>
+      <div id="progress-container">
+        <svg class="progress-ring" width="120" height="120">
+          <circle
+            class="progress-ring__circle"
+            stroke="#00bcd4"
+            stroke-width="8"
+            fill="transparent"
+            r="50"
+            cx="60"
+            cy="60"
+          />
+        </svg>
+      </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
