@@ -47,6 +47,9 @@ resetButton.id = "reset";
 document.getElementById("btn-container").appendChild(resetButton);
 
 resetButton.addEventListener("click", () => {
+    const confirmReset = confirm("Are you sure you want to reset the count?");
+  if (!confirmReset) return; // If the user cancels, do nothing
+  // Reset the count to 0
   count = 0;
   updateCountDisplay();
 });
@@ -62,3 +65,5 @@ function updateCountDisplay() {
   countDisplay.classList.add("changed");
   setTimeout(() => countDisplay.classList.remove("changed"), 150);
 }
+
+
