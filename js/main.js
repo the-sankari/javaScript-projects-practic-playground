@@ -1,3 +1,6 @@
+import loadNavbar from "./navbar.js"
+
+loadNavbar();
 async function loadProjects() {
   try {
     const response = await fetch("data/projects.json");
@@ -42,7 +45,7 @@ async function loadProjects() {
           <h3>${project.name}</h3>
           <p>${project.description}</p>
           <p><strong>Category:</strong> ${project.category}</p>
-          <a href="${project.url}" target="_blank">View Project</a>
+          <a href="${project.url}">View Project</a>
         `;
         container.appendChild(card);
       });
@@ -78,3 +81,5 @@ backToTop.addEventListener("click", (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+
