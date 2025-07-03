@@ -1,6 +1,6 @@
-import loadNavbar from "./navbar.js"
+import loadUniversalNavbar from "./universalNavbar.js";
 
-loadNavbar();
+loadUniversalNavbar();
 async function loadProjects() {
   try {
     const response = await fetch("data/projects.json");
@@ -81,5 +81,3 @@ backToTop.addEventListener("click", (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
-

@@ -11,8 +11,6 @@
     />
   </head>
   <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
     <h1>💻 JavaScript Projects Playground</h1>
     <p>Explore mini projects:</p>
     <!-- 🔘 Category Filter Buttons -->
@@ -50,12 +48,5 @@
     </footer>
 
     <script type="module" src="./js/main.js"></script>
-    <script>
-      fetch("./components/navbar.html")
-        .then((res) => res.text())
-        .then((data) => {
-          document.getElementById("navbar-placeholder").innerHTML = data;
-        });
-    </script>
   </body>
 </html>
