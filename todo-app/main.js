@@ -16,9 +16,25 @@ const renderTodos = () => {
   todoList.innerHTML = ""; // Clear the list first
   todos.forEach((todo, index) => {
     const todoItem = document.createElement("li");
-    todoItem.textContent = todo;
+    todoItem.textContent = todo.text; // Set the text of the todo item
     todoItem.className = "todo-item";
 
+    // Add a class to indicate if the todo is completed
+    if (todo.completed) {
+      todoItem.classList.add("completed");
+    }
+
+    // ✅ Toggle Status Button
+    const statusToggleButton = document.createElement("button");
+    statusToggleButton.textContent = "Toggle Status";
+    statusToggleButton.className = "toggle-status";
+    statusToggleButton.addEventListener("click", () => {
+      todos[index].completed = !todos[index].completed;
+      saveTodos();
+      renderTodos();
+    });
+
+    // Add a button to toggle the status of the todo item
     const deleteTodoButton = document.createElement("button");
     deleteTodoButton.textContent = "Delete";
     deleteTodoButton.className = "delete-todo";
@@ -26,6 +42,10 @@ const renderTodos = () => {
       // Function to delete todo item
       deleteTodo(todoItem, index);
     });
+
+    // Append the buttons to the todo item
+    todoItem.appendChild(statusToggleButton);
+    // Append the delete button to the todo item
     todoItem.appendChild(deleteTodoButton);
 
     // Append the todo item to the list
@@ -53,11 +73,12 @@ const loadTodos = () => {
 
 const deleteTodo = (todoItem, index) => {
   todos.splice(index, 1); // Remove the todo from the array
-  todoItem.remove(); // Remove the item from the DOM
   saveTodos(); // Save the updated todos
   console.log("Todo deleted:", index);
   renderTodos(); // Re-render the list
 };
+
+// Function to display todos
 
 const displayTodos = () => {
   const todoText = todoInput.value.trim();
@@ -65,7 +86,9 @@ const displayTodos = () => {
     alert("Please enter a todo item.");
     return;
   }
-  todos.push(todoText);
+  todos.push({ text: todoText, completed: false }); // Add the new todo item
+  // The completed property is set to false by default
+  console.log("Todo added:", todoText);
   todoInput.value = ""; // Clear the input field
   saveTodos(); // Save the updated todos
   console.log("Todo added:", todoText);
