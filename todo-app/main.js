@@ -8,4 +8,8 @@ loadUniversalNavbar();
 // Data storage
 let todos = [];
 
+// DOM elements
+const todoInput = document.getElementById("todo-input");
+const addTodoButton = document.getElementById("add-todo");
+const todoList = document.getElementById("todo-list");
 
