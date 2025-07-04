@@ -1,1 +1,28 @@
 @import url(../../css/global.css);
+.todo-item.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: gray;
+}
+
+.warning, .error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.message {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.success {
+  color: green;
+}
+
+.info {
+  color: skyblue;
+}
