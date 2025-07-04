@@ -33,9 +33,20 @@ const renderTodos = () => {
   });
 };
 
+const saveTodos = () => {
+  // This function can be used to save todos to local storage or a server
+  localStorage.setItem("todos", JSON.stringify(todos)); // Save todos to local storage
+  console.log("Todos saved:", todos);
+};
+
+// Function to delete todo item
+
 const deleteTodo = (todoItem, index) => {
   todos.splice(index, 1); // Remove the todo from the array
   todoItem.remove(); // Remove the item from the DOM
+  saveTodos(); // Save the updated todos
+  console.log("Todo deleted:", index);
+  alert("Todo deleted successfully!"); // Alert the user
   renderTodos(); // Re-render the list
 };
 
