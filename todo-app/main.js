@@ -39,6 +39,16 @@ const saveTodos = () => {
   console.log("Todos saved:", todos);
 };
 
+// Load todos from local storage on page load
+const loadTodos = () => {
+  const storedTodos = localStorage.getItem("todos");
+  if (storedTodos) {
+    todos = JSON.parse(storedTodos); // Parse the stored todos
+    console.log("Todos loaded:", todos);
+    renderTodos(); // Render the loaded todos
+  }
+};
+
 // Function to delete todo item
 
 const deleteTodo = (todoItem, index) => {
@@ -46,7 +56,6 @@ const deleteTodo = (todoItem, index) => {
   todoItem.remove(); // Remove the item from the DOM
   saveTodos(); // Save the updated todos
   console.log("Todo deleted:", index);
-  alert("Todo deleted successfully!"); // Alert the user
   renderTodos(); // Re-render the list
 };
 
@@ -60,11 +69,12 @@ const displayTodos = () => {
   todoInput.value = ""; // Clear the input field
   saveTodos(); // Save the updated todos
   console.log("Todo added:", todoText);
-  alert("Todo added successfully!"); // Alert the user
-  // Re-render the list
-  renderTodos();
+  renderTodos(); // Re-render the list
 };
 
 addTodoButton.addEventListener("click", () => {
   displayTodos();
 });
+
+// Load todos when the page is ready
+loadTodos();
