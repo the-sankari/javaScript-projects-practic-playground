@@ -58,6 +58,10 @@ const displayTodos = () => {
   }
   todos.push(todoText);
   todoInput.value = ""; // Clear the input field
+  saveTodos(); // Save the updated todos
+  console.log("Todo added:", todoText);
+  alert("Todo added successfully!"); // Alert the user
+  // Re-render the list
   renderTodos();
 };
 
