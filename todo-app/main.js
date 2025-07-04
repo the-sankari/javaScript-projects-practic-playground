@@ -23,6 +23,7 @@ const renderTodos = () => {
     // Editing functionality
 
     if (todo.isEditing) {
+      todoItem.classList.add("editing");
       const editInput = document.createElement("input");
       editInput.type = "text";
       editInput.value = todo.text; // Set the current text as the value
@@ -139,6 +140,10 @@ const deleteTodo = (todoItem, index) => {
 };
 
 const startEdit = (index) => {
+  todos.forEach((todo) => (todo.isEditing = false)); // Reset all todos to not editing
+  // Set the isEditing property to true for the selected todo item
+  // This ensures only one todo can be edited at a time
+  console.log("Starting edit for todo at index:", index);
   todos[index].isEditing = true; // Set the isEditing property to true
   console.log(`Editing todo at index ${index}:`, todos[index].text);
   renderTodos(); // Re-render the list to show the edit input
@@ -146,6 +151,16 @@ const startEdit = (index) => {
 
 const saveEdit = (index, newText) => {
   const trimmedText = newText.trim(); // Trim the input text
+
+  // Check for duplicates
+  const isDuplicate = todos.some(
+    (t, i) => i !== index && t.text.toLowerCase() === trimmedText.toLowerCase()
+  );
+
+  if (isDuplicate) {
+    warning(`Todo "${trimmedText}" already exists!`); // Show a warning if the todo already exists
+    return;
+  }
   if (!trimmedText) {
     warning("Todo text cannot be empty!"); // Show a warning if the input is empty
     return;
@@ -159,12 +174,15 @@ const saveEdit = (index, newText) => {
   renderTodos(); // Re-render the list to show the updated todo
 };
 
-const cancelEdit = (index)=>{
+const cancelEdit = (index) => {
   todos[index].isEditing = false; // Set isEditing to false to cancel editing
-  console.log(`Editing cancelled for todo at index ${index}:`, todos[index].text);
+  console.log(
+    `Editing cancelled for todo at index ${index}:`,
+    todos[index].text
+  );
   renderTodos(); // Re-render the list to show the todo item without edit input
   updateMessage(`Editing cancelled for todo "${todos[index].text}"`, "info"); // Show a message indicating cancellation
-}
+};
 
 // Function to display todos
 
