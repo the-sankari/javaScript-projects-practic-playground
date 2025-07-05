@@ -33,10 +33,20 @@ const renderTodos = () => {
   }
 
   todos.forEach((todo, index) => {
-    const todoItem = createTodoElement("li", "todo-item", todo.text);
-    todo.completed
-      ? todoItem.classList.add("completed")
-      : todoItem.classList.remove("completed");
+    const todoItem = createTodoElement("li", "todo-item", "");
+
+    // ✅ Create content span for todo text
+    const contentSpan = createTodoElement(
+      "span",
+      "todo-item-content",
+      todo.text
+    );
+
+    // ✅ Create button group container
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "todo-item-buttons";
+
+    // ✅ If editing, render input + save/cancel
     if (todo.isEditing) {
       const editInput = createInputElement("edit-todo-input", todo.text);
       const saveButton = createTodoElement("button", "save-todo", "Save");
@@ -49,60 +59,62 @@ const renderTodos = () => {
           cancelEditingTodo(index);
         }
       });
+
       saveButton.addEventListener("click", () => {
         saveEditedTodo(index, editInput.value);
       });
+
       cancelButton.addEventListener("click", () => {
         cancelEditingTodo(index);
       });
-      todoItem.innerHTML = ""; // Clear the todo item
+
       todoItem.appendChild(editInput);
-      todoItem.appendChild(saveButton);
-      todoItem.appendChild(cancelButton);
-      console.log("Editing todo:", todo.text);
+      buttonGroup.appendChild(saveButton);
+      buttonGroup.appendChild(cancelButton);
+      todoItem.appendChild(buttonGroup);
     } else {
-      todoItem.textContent = todo.text; // Set the text content for non-editing todos
-      if (todo.completed) {
-        todoItem.classList.add("completed");
-      }
-
-      const editTodoButton = createTodoElement("button", "edit-todo", "Edit");
-
-      const deleteTodoButton = createTodoElement(
-        "button",
-        "delete-todo",
-        "Delete"
-      );
-      const toggleTodoButton = createTodoElement(
+      // ✅ Create action buttons
+      const editButton = createTodoElement("button", "edit-todo", "Edit");
+      const deleteButton = createTodoElement("button", "delete-todo", "Delete");
+      const toggleButton = createTodoElement(
         "button",
         "toggle-todo",
         todo.completed ? "Todo" : "Done"
       );
-      deleteTodoButton.addEventListener("click", () => {
+
+      editButton.addEventListener("click", () => {
+        startEditingTodo(index);
+      });
+
+      deleteButton.addEventListener("click", () => {
         todos.splice(index, 1);
         renderTodos();
         todoMessage(DELETE_TODO_SUCCESS, "success");
       });
 
-      toggleTodoButton.addEventListener("click", () => {
+      toggleButton.addEventListener("click", () => {
         todo.completed = !todo.completed;
         renderTodos();
         todoMessage(TOGGLE_TODO_SUCCESS, "info");
       });
 
-      editTodoButton.addEventListener("click", () => {
-        startEditingTodo(index);
-      });
       todoItem.addEventListener("dblclick", () => {
         startEditingTodo(index);
       });
 
-      // Append buttons to the todo item
+      // ✅ Set completed style
+      if (todo.completed) {
+        contentSpan.classList.add("completed");
+      }
 
-      todoItem.appendChild(deleteTodoButton);
-      todoItem.appendChild(editTodoButton);
-      todoItem.appendChild(toggleTodoButton);
+      // ✅ Append everything
+      buttonGroup.appendChild(toggleButton);
+      buttonGroup.appendChild(editButton);
+      buttonGroup.appendChild(deleteButton);
+      todoItem.appendChild(contentSpan);
+      todoItem.appendChild(buttonGroup);
     }
+
     todoList.appendChild(todoItem);
   });
 };
