@@ -93,6 +93,11 @@ const renderTodos = () => {
       editTodoButton.addEventListener("click", () => {
         startEditingTodo(index);
       });
+      todoItem.addEventListener("dblclick", () => {
+        startEditingTodo(index);
+      });
+
+      // Append buttons to the todo item
 
       todoItem.appendChild(deleteTodoButton);
       todoItem.appendChild(editTodoButton);
