@@ -42,6 +42,13 @@ const renderTodos = () => {
       const saveButton = createTodoElement("button", "save-todo", "Save");
       const cancelButton = createTodoElement("button", "cancel-todo", "Cancel");
 
+      editInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          saveEditedTodo(index, editInput.value);
+        } else if (e.key === "Escape") {
+          cancelEditingTodo(index);
+        }
+      });
       saveButton.addEventListener("click", () => {
         saveEditedTodo(index, editInput.value);
       });
@@ -156,6 +163,14 @@ const saveEditedTodo = (index, newText) => {
   const trimmedTodoText = newText.trim();
   if (!trimmedTodoText) {
     todoMessage(ADD_TODO_ERROR, "error");
+    return;
+  }
+  const isDuplicate = todos.some(
+    (todo, i) =>
+      i !== index && todo.text.toLowerCase() === trimmedTodoText.toLowerCase()
+  );
+  if (isDuplicate) {
+    todoMessage("This todo already exists.", "error");
     return;
   }
   todos[index].text = trimmedTodoText;
