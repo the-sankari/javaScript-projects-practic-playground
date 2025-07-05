@@ -190,3 +190,9 @@ h1 {
   color: #58a6ff;
   font-weight: bold;
 }
+
+.completed{
+  text-decoration: line-through;
+  color: #8b949e;
+  font-weight: bold;
+}
