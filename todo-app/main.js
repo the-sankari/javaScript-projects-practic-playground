@@ -37,39 +37,62 @@ const renderTodos = () => {
     todo.completed
       ? todoItem.classList.add("completed")
       : todoItem.classList.remove("completed");
-    const deleteTodoButton = createTodoElement(
-      "button",
-      "delete-todo",
-      "Delete"
-    );
-    const editTodoButton = createTodoElement("button", "edit-todo", "Edit");
-    const toggleTodoButton = createTodoElement(
-      "button",
-      "toggle-todo",
-      todo.completed ? "Todo" : "Done"
-    );
-    deleteTodoButton.addEventListener("click", () => {
-      todos.splice(index, 1);
-      renderTodos();
-      todoMessage(DELETE_TODO_SUCCESS, "success");
-    });
+    if (todo.isEditing) {
+      const editInput = createInputElement("edit-todo-input", todo.text);
+      const saveButton = createTodoElement("button", "save-todo", "Save");
+      const cancelButton = createTodoElement("button", "cancel-todo", "Cancel");
 
-    toggleTodoButton.addEventListener("click", () => {
-      todo.completed = !todo.completed;
-      renderTodos();
-      todoMessage(TOGGLE_TODO_SUCCESS, "info");
-    });
+      saveButton.addEventListener("click", () => {
+        saveEditedTodo(index, editInput.value);
+      });
+      cancelButton.addEventListener("click", () => {
+        cancelEditingTodo(index);
+      });
+      todoItem.innerHTML = ""; // Clear the todo item
+      todoItem.appendChild(editInput);
+      todoItem.appendChild(saveButton);
+      todoItem.appendChild(cancelButton);
+      console.log("Editing todo:", todo.text);
+    } else {
+      todoItem.textContent = todo.text; // Set the text content for non-editing todos
+      if (todo.completed) {
+        todoItem.classList.add("completed");
+      }
 
-    todoItem.appendChild(deleteTodoButton);
-    todoItem.appendChild(editTodoButton);
-    todoItem.appendChild(toggleTodoButton);
+      const editTodoButton = createTodoElement("button", "edit-todo", "Edit");
+
+      const deleteTodoButton = createTodoElement(
+        "button",
+        "delete-todo",
+        "Delete"
+      );
+      const toggleTodoButton = createTodoElement(
+        "button",
+        "toggle-todo",
+        todo.completed ? "Todo" : "Done"
+      );
+      deleteTodoButton.addEventListener("click", () => {
+        todos.splice(index, 1);
+        renderTodos();
+        todoMessage(DELETE_TODO_SUCCESS, "success");
+      });
+
+      toggleTodoButton.addEventListener("click", () => {
+        todo.completed = !todo.completed;
+        renderTodos();
+        todoMessage(TOGGLE_TODO_SUCCESS, "info");
+      });
+
+      editTodoButton.addEventListener("click", () => {
+        startEditingTodo(index);
+      });
+
+      todoItem.appendChild(deleteTodoButton);
+      todoItem.appendChild(editTodoButton);
+      todoItem.appendChild(toggleTodoButton);
+    }
     todoList.appendChild(todoItem);
   });
-  console.log("Todos rendered:", todos);
-  if (todos.length === 0) {
-    todoList.innerHTML = `<p>${NO_TODOS_MESSAGE}</p>`;
-  }
-  console.log("Todos saved to local storage:", todos);
 };
 
 const saveTodosToLocalStorage = () => {
@@ -93,6 +116,16 @@ const createTodoElement = (tag, className, textcontent) => {
   return element;
 };
 
+const createInputElement = (className, value) => {
+  const input = document.createElement("input");
+  input.className = className;
+  input.type = "text";
+  input.value = value;
+  return input;
+};
+
+// Function to add a new todo
+
 const addTodo = () => {
   const todoText = todoInput.value.trim();
   if (todoText === "") {
@@ -106,13 +139,38 @@ const addTodo = () => {
   };
   todos.push(newTodo);
   saveTodosToLocalStorage();
-  console.log("Todos after adding:", todos);
   // Clear the input field and re-render the list
   todoInput.value = "";
   renderTodos();
   todoMessage(ADD_TODO_SUCCESS, "success");
   todoInput.focus();
   console.log("Todo added:", newTodo);
+};
+
+const startEditingTodo = (index) => {
+  todos[index].isEditing = true;
+  renderTodos();
+};
+
+const saveEditedTodo = (index, newText) => {
+  const trimmedTodoText = newText.trim();
+  if (!trimmedTodoText) {
+    todoMessage(ADD_TODO_ERROR, "error");
+    return;
+  }
+  todos[index].text = trimmedTodoText;
+  todos[index].isEditing = false;
+  saveTodosToLocalStorage();
+  todoMessage(EDIT_TODO_SUCCESS, "success");
+  renderTodos();
+  console.log("Todo edited:", todos[index]);
+};
+
+const cancelEditingTodo = (index) => {
+  todos[index].isEditing = false;
+  renderTodos();
+  todoMessage("Editing cancelled.", "info");
+  console.log("Editing cancelled for todo:", todos[index]);
 };
 
 const todoMessage = (message, type) => {
