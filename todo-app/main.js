@@ -28,7 +28,9 @@ const renderTodos = () => {
   todoList.innerHTML = "";
 
   if (todos.length === 0) {
-    todoList.innerHTML = "<p>No todos available. Add some!</p>";
+    const noTodosMessage = createTodoElement("li", "no-todos", NO_TODOS_MESSAGE);
+    todoList.appendChild(noTodosMessage);
+    todoMessageDiv.innerHTML = "";
     return;
   }
 
