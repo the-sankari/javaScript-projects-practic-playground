@@ -148,7 +148,7 @@ const addTodo = () => {
 };
 
 const startEditingTodo = (index) => {
-  todos[index].isEditing = true;
+  todos.forEach((todo, i) => (todo.isEditing = i === index));
   renderTodos();
 };
 
