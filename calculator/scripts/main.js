@@ -97,3 +97,25 @@ const addDecimal = () => {
     console.log("Decimal point already exists in the display.");
   }
 };
+
+// Function to delete the last character from the display
+
+const deleteLast = () => {
+  // Get the current display value
+  let currentValue = display.value;
+
+  // If the display is not empty, remove the last character
+  if (currentValue.length > 0) {
+    // If the display has only one character, reset it to "0"
+    if (currentValue.length === 1) {
+      display.value = "0";
+    } else {
+      // Remove the last character from the display
+      display.value = currentValue.slice(0, -1);
+    }
+  }
+  // If the display is empty, do nothing
+  else {
+    console.log("Display is already empty. No character to delete.");
+  }
+};
