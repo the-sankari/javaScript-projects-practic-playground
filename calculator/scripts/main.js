@@ -22,7 +22,6 @@
  * License: MIT
  */
 
-
 let firstNumber = null; // Stores the first number
 let currentOperator = null; // Stores the operator (+, -, ×, ÷)
 let waitingForSecondNumber = false; // Flag: are we waiting for second number?

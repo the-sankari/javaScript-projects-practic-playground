@@ -1,3 +1,32 @@
+/*!
+ * Dark Neumorphism Calculator Theme
+ * Author: Kajol Sutra Dhar
+ * Version: 2.0.0 - Production Ready
+ * Date: July 2025
+ * 
+ * Description: Sophisticated dark neumorphism design featuring 3D-like tactile
+ * buttons, professional color hierarchy, and smooth micro-interactions.
+ * 
+ * Design Features:
+ * 🎨 Dark theme with sophisticated color palette (#2d3748 base)
+ * 💎 3D neumorphic buttons with realistic depth and shadows
+ * 🧡 Orange accent for operations (+, -, ×, ÷, =)
+ * 💙 Cyan accent for utilities (CE, C, ⌫)
+ * ⚪ Clean light buttons for numbers (0-9, ±, .)
+ * 📱 Fully responsive design (desktop → tablet → mobile)
+ * ✨ Smooth hover effects and press animations
+ * 
+ * Technical Implementation:
+ * - Advanced CSS box-shadow techniques for depth
+ * - CSS Grid for responsive button layout
+ * - Linear gradients for button coloring
+ * - Transform and transition for micro-interactions
+ * - Media queries for responsive breakpoints
+ * 
+ * Browser Support: Chrome 60+, Firefox 55+, Safari 12+, Edge 79+
+ * License: MIT
+ */
+
 /* 
  * Calculator Design: Dark Neumorphism/Soft UI (Premium 2025)
  * 3D-like pressed buttons with sophisticated dark theme
