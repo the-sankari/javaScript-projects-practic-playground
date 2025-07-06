@@ -119,3 +119,25 @@ const deleteLast = () => {
     console.log("Display is already empty. No character to delete.");
   }
 };
+
+// Function to toggle the sign of the current number
+const toggleSign = () => {
+  // Get the current value from the display
+  let currentValue = parseFloat(display.value);
+
+  // If the current value is a number, toggle its sign
+  if (!isNaN(currentValue)) {
+    // If the current value is positive or zero, make it negative
+    if (currentValue >= 0) {
+      display.value = -Math.abs(currentValue);
+    }
+    // If the current value is nagative, make it positive
+    else {
+      display.value = Math.abs(currentValue);
+    }
+  }
+  // If the current value is not a number, do nothing
+  else {
+    console.log("Current value is not a number. Can not toggle sign");
+  }
+};
