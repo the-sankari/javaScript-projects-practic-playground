@@ -138,7 +138,7 @@ class TodoApp {
         "todo-item-content",
         todo.text
       );
-      const buttonGroup = this.createElement("div");
+      const buttonGroup = document.createElement("div");
       buttonGroup.className = "todo-item-buttons";
 
       if (todo.isEditing) {
