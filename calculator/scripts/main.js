@@ -1,20 +1,24 @@
 /*!
- * Calculator App - Phase 1: Foundation
+ * Professional Calculator - Dark Neumorphism Edition
  * Author: Kajol Sutra Dhar
- * Version: 1.0.0
+ * Version: 2.0.0 - Production Ready
  * Date: July 2025
- * Description: Professional calculator with basic arithmetic operations
+ * Description: Sophisticated calculator with dark neumorphism design and complete functionality
  *
  * Features:
- * - Basic arithmetic operations (+, -, ×, ÷)
- * - Decimal number support
- * - Backspace functionality
- * - Sign toggle (±)
- * - Professional clear system (CE vs C)
- * - Error handling (division by zero)
- * - Responsive design
+ * ✅ Basic arithmetic operations (+, -, ×, ÷)
+ * ✅ Decimal number support with validation
+ * ✅ Professional clear system (CE vs C)
+ * ✅ Backspace functionality (⌫)
+ * ✅ Sign toggle (±) for positive/negative numbers
+ * ✅ Comprehensive error handling (division by zero)
+ * ✅ Dark neumorphism UI design
+ * ✅ Responsive design for all devices
+ * ✅ Smooth animations and micro-interactions
  *
- * Technologies: HTML5, CSS3, Vanilla JavaScript
+ * Technologies: HTML5, CSS3, Vanilla JavaScript ES6+
+ * Design: Dark Neumorphism with professional color hierarchy
+ * Architecture: Modular functions, clean state management
  * License: MIT
  */
 

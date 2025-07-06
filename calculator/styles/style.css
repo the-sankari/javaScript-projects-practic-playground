@@ -1,81 +1,264 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  height: 100vh;
-  background-color: #f4f4f4;
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 20px;
+/* 
+ * Calculator Design: Dark Neumorphism/Soft UI (Premium 2025)
+ * 3D-like pressed buttons with sophisticated dark theme
+ * The perfect blend of modern aesthetics and tactile interaction
+ */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  text-align: center;
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #2d3748;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #e2e8f0;
 }
+
+/* Header styling */
+header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #f7fafc;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+
+/* Main container */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Calculator styling - Dark Neumorphic */
 .calculator {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: #2d3748;
+  border-radius: 30px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 20px 20px 60px #1a202c, -20px -20px 60px #404e64;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.calculator h1 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+
+/* Display styling - Clean Dark Neumorphic */
+.display {
+  margin-bottom: 2rem;
 }
 
 #display {
   width: 100%;
-  height: 50px;
-  font-size: 24px;
+  height: 90px;
+  font-size: 2.8rem;
+  font-weight: 300;
   text-align: right;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 25px;
+  background: #2d3748;
+  color: #f7fafc;
+  outline: none;
+  box-shadow: inset 12px 12px 24px #1a202c, inset -12px -12px 24px #404e64;
+  letter-spacing: 1px;
+  line-height: 90px;
 }
 
+#display::placeholder {
+  color: rgba(247, 250, 252, 0.4);
+}
+
+/* Button grid */
 .buttons {
-  max-width: 400px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 1.2rem;
 }
 
+/* Base button styling - Dark Neumorphic raised */
 button {
-  padding: 20px;
-  font-size: 18px;
+  height: 75px;
   border: none;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+  border-radius: 22px;
+  font-size: 1.4rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-button:hover {
-  background-color: #e0e0e0;
-}
-button:active {
-  background-color: #d0d0d0;
-}
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  transition: all 0.15s ease;
+  outline: none;
+  background: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 10px 10px 20px #1a202c, -10px -10px 20px #404e64;
+  position: relative;
+  overflow: hidden;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
+/* Subtle inner glow effect */
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  background-color: #afaaaa;
-  width: 100%;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%
+  );
+  border-radius: 22px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+/* Button hover state */
+button:hover {
+  box-shadow: 8px 8px 16px #1a202c, -8px -8px 16px #404e64;
+  transform: translateY(-1px);
+}
+
+/* Button active state - pressed in */
+button:active {
+  box-shadow: inset 6px 6px 12px #1a202c, inset -6px -6px 12px #404e64;
+  transform: translateY(1px);
+}
+
+/* Number buttons - Enhanced dark neumorphic */
+button:nth-child(5),  /* 1 */
+button:nth-child(6),  /* 2 */
+button:nth-child(7),  /* 3 */
+button:nth-child(9),  /* 4 */
+button:nth-child(10), /* 5 */
+button:nth-child(11), /* 6 */
+button:nth-child(13), /* 7 */
+button:nth-child(14), /* 8 */
+button:nth-child(15), /* 9 */
+button:nth-child(17), /* ± */
+button:nth-child(18), /* 0 */
+button:nth-child(19)  /* . */ {
+  background: #2d3748;
+  color: #f7fafc;
+  font-weight: 400;
+}
+
+/* Operation buttons - Orange neumorphic accent */
+button:nth-child(4),  /* ÷ */
+button:nth-child(8),  /* × */
+button:nth-child(12), /* - */
+button:nth-child(16), /* + */
+button:nth-child(20)  /* = */ {
+  background: linear-gradient(145deg, #ed8936, #dd7324);
+  color: #ffffff;
+  box-shadow: 10px 10px 20px #1a202c, -10px -10px 20px #404e64;
+  font-weight: 600;
+}
+
+button:nth-child(4):hover,
+button:nth-child(8):hover,
+button:nth-child(12):hover,
+button:nth-child(16):hover,
+button:nth-child(20):hover {
+  box-shadow: 8px 8px 16px #1a202c, -8px -8px 16px #404e64;
+}
+
+button:nth-child(4):active,
+button:nth-child(8):active,
+button:nth-child(12):active,
+button:nth-child(16):active,
+button:nth-child(20):active {
+  box-shadow: inset 6px 6px 12px #1a202c, inset -6px -6px 12px #404e64;
+}
+
+/* Clear buttons - Cyan neumorphic accent */
+button:nth-child(1),  /* CE */
+button:nth-child(2),  /* C */
+button:nth-child(3)   /* ⌫ */ {
+  background: linear-gradient(145deg, #4fd1c7, #38b2ac);
+  color: #ffffff;
+  box-shadow: 10px 10px 20px #1a202c, -10px -10px 20px #404e64;
+  font-weight: 500;
+}
+
+button:nth-child(1):hover,
+button:nth-child(2):hover,
+button:nth-child(3):hover {
+  box-shadow: 8px 8px 16px #1a202c, -8px -8px 16px #404e64;
+}
+
+button:nth-child(1):active,
+button:nth-child(2):active,
+button:nth-child(3):active {
+  box-shadow: inset 6px 6px 12px #1a202c, inset -6px -6px 12px #404e64;
+}
+
+/* Footer styling */
+footer {
+  background: transparent;
   text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #666;
+  padding: 1.5rem;
+  color: #a0aec0;
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 2rem;
+    margin: 0 0.5rem;
+  }
+
+  button {
+    height: 65px;
+    font-size: 1.2rem;
+  }
+
+  .buttons {
+    gap: 1rem;
+  }
+
+  #display {
+    height: 80px;
+    font-size: 2.2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  button {
+    height: 55px;
+    font-size: 1rem;
+  }
+
+  #display {
+    height: 70px;
+    font-size: 1.8rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
 }
