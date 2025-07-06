@@ -1,5 +1,23 @@
-// File: calculator/scripts/main.js
-// This file contains the JavaScript code for the calculator functionality
+/*!
+ * Calculator App - Phase 1: Foundation
+ * Author: Kajol Sutra Dhar
+ * Version: 1.0.0
+ * Date: July 2025
+ * Description: Professional calculator with basic arithmetic operations
+ *
+ * Features:
+ * - Basic arithmetic operations (+, -, ×, ÷)
+ * - Decimal number support
+ * - Backspace functionality
+ * - Sign toggle (±)
+ * - Professional clear system (CE vs C)
+ * - Error handling (division by zero)
+ * - Responsive design
+ *
+ * Technologies: HTML5, CSS3, Vanilla JavaScript
+ * License: MIT
+ */
+
 
 let firstNumber = null; // Stores the first number
 let currentOperator = null; // Stores the operator (+, -, ×, ÷)
