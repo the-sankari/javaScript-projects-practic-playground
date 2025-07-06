@@ -36,6 +36,47 @@ const addNumber = (num) => {
   }
 };
 
+//Calculate the result based on the current operator
+const calculateResult = () => {
+  // Step 1: Get second number from display
+  let secondNumber = parseFloat(display.value);
+  // Step 2: Perform calculation based on operator
+  if (firstNumber === null || currentOperator === null) {
+    return; // Don't calculate if missing data
+  }
+
+  // Step 3 Perform the colculation based on the operator
+  let result;
+  switch (currentOperator) {
+    case "+":
+      result = firstNumber + secondNumber;
+      break;
+    case "-":
+      result = firstNumber - secondNumber;
+      break;
+    case "*":
+      result = firstNumber * secondNumber;
+      break;
+    case "/":
+      if (secondNumber === 0) {
+        display.value = "Error"; // Handle division by zero
+        return;
+      }
+      result = firstNumber / secondNumber;
+      break;
+
+    default:
+      break;
+  }
+
+  // Step 4: Display result
+  display.value = result;
+  // Step 5: Reset state for next calculation
+  firstNumber = null; // Reset first number
+  currentOperator = null; // Reset operator
+  waitingForSecondNumber = false; // Reset waiting flag
+};
+
 const clearAll = () => {
   // Reset the display to "0"
   display.value = "0";
