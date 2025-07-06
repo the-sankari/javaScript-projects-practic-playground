@@ -9,7 +9,7 @@ A **sophisticated calculator application** featuring cutting-edge **Dark Neumorp
   ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
   ![Portfolio Ready](https://img.shields.io/badge/Portfolio-Ready-brightgreen?style=for-the-badge)
   
-  [Live Demo](#) | [Portfolio](https://kajol-sutra-dhar.vercel.app) | [All Projects](https://github.com/the-sankari)
+  [Live Demo](https://the-sankari.github.io/javaScript-projects-practic-playground/calculator/) | [Portfolio](https://kajol-sutra-dhar.vercel.app) | [All Projects](https://github.com/the-sankari)
   
 </div>
 
