@@ -81,3 +81,19 @@ const clearAll = () => {
   // Reset the display to "0"
   display.value = "0";
 };
+
+const addDecimal = () => {
+  // Check if we are starting fresh after an operation
+  if (waitingForSecondNumber || display.value === "0") {
+    display.value = "0."; // Start with 0. if we are waiting for second number
+    waitingForSecondNumber = false; // Reset the flag
+  }
+  // Check if decimal already exists in the current display value
+  else if (!display.value.includes(".")) {
+    display.value += "."; // Append decimal point if not already present
+  }
+  // If decimal already exists, do nothing
+  else {
+    console.log("Decimal point already exists in the display.");
+  }
+};
