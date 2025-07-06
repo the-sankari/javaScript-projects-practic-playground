@@ -16,9 +16,9 @@
           <input type="text" name="" value="0" id="display" readonly />
         </div>
         <div class="buttons">
-          <button onclick="clearAll()">CE</button>
-          <button onclick="toggleSign()">±</button>
-          <button onclick="setOperator('%')">%</button>
+          <button onclick="clearEntry()">CE</button>
+          <button onclick="clearAll()">C</button>
+          <button onclick="deleteLast()">⌫</button>
           <button onclick="setOperation('/')">÷</button>
           <button onclick="addNumber(1)">1</button>
           <button onclick="addNumber(2)">2</button>
@@ -32,9 +32,10 @@
           <button onclick="addNumber(8)">8</button>
           <button onclick="addNumber(9)">9</button>
           <button onclick="setOperation('+')">+</button>
-          <button onclick="deleteLast()">⌫</button>
+          <button onclick="toggleSign()">±</button>
           <button onclick="addNumber(0)">0</button>
           <button onclick="addDecimal()">.</button>
+          <button onclick="setOperator('%')">%</button>
           <button onclick="calculateResult()">=</button>
         </div>
       </div>

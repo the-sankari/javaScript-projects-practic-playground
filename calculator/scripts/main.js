@@ -77,9 +77,19 @@ const calculateResult = () => {
   waitingForSecondNumber = false; // Reset waiting flag
 };
 
-const clearAll = () => {
+const clearEntry = () => {
   // Reset the display to "0"
   display.value = "0";
+};
+
+// Function to clear all entries and reset the calculator
+const clearAll = () => {
+  // Reset all variables to their initial state
+  display.value = "0"; // Reset display to "0"
+  firstNumber = null; // Reset first number
+  currentOperator = null; // Reset operator
+  waitingForSecondNumber = false; // Reset waiting flag
+  console.log("Calculator reset to initial state.");
 };
 
 const addDecimal = () => {
