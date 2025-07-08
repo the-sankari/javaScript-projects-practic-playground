@@ -38,7 +38,27 @@
 
 // Make something happen when the calculate button is clicked.
 const calculateButton = document.getElementById("calculateBtn");
+const billAmountInput = document.getElementById("billAmount");
+const tipPercentageInput = document.getElementById("tipPercentage");
+const numberOfPeopleInput = document.getElementById("numberOfPeople");
+const resultDisplay = document.getElementById("result");
 
 calculateButton.addEventListener("click", () => {
+  // Get the values from the input fields
+  const billAmount = parseFloat(billAmountInput.value);
+  const tipPercentage = parseFloat(tipPercentageInput.value);
+  if (
+    billAmount <= 0 ||
+    tipPercentage < 0 ||
+    isNaN(billAmount) ||
+    isNaN(tipPercentage)
+  ) {
+    alert("Please enter valid bill amount and tip percentage.");
+    return;
+  }
+
+  console.log(`Bill Amount: ${billAmount}, Tip Percentage: ${tipPercentage}`);
+  console.log(`Number of People: ${numberOfPeopleInput.value}`);
+
   console.log("Calculate button clicked!");
 });
