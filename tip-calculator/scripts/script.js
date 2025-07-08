@@ -42,6 +42,10 @@ const billAmountInput = document.getElementById("billAmount");
 const tipPercentageInput = document.getElementById("tipPercentage");
 const numberOfPeopleInput = document.getElementById("numberOfPeople");
 const resultDisplay = document.getElementById("results");
+const showTotalTip = document.getElementById("totalTip");
+const showTipPerPerson = document.getElementById("tipPerPerson");
+const showTotalPerPerson = document.getElementById("totalPerPerson");
+const showTotalBill = document.getElementById("totalBill");
 
 calculateButton.addEventListener("click", () => {
   // Get the values from the input fields
@@ -78,28 +82,13 @@ calculateButton.addEventListener("click", () => {
   console.log(`Tip Per Person: ${tipPerPerson}`);
 
   // Calculate the total bill per person
-  const totalPerPerson = (totalBill / numberOfPeople).toFixed(2);
+  const totalPerPerson = totalBill / numberOfPeople;
   console.log(`Total Per Person: ${totalPerPerson}`);
 
   // Display the results
-  resultDisplay.innerHTML = `
-      <div class="result-item">
-        <span>Total Tip:</span>
-        <span>$${tipAmount.toFixed(2)}</span>
-      </div>
-      <div class="result-item">
-        <span>Total Bill:</span>
-        <span>$${totalBill.toFixed(2)}</span>
-      </div>
-      <div class="result-item">
-        <span>Tip Per Person:</span>
-        <span>$${tipPerPerson}</span>
-      </div>
-      <div class="result-item">
-        <span>Total Per Person:</span>
-        <span>$${totalPerPerson}</span>
-      </div>
-    `;
-
+  showTotalBill.textContent = totalBill.toFixed(2);
+  showTotalTip.textContent = tipAmount.toFixed(2);
+  showTipPerPerson.textContent = tipPerPerson.toFixed(2);
+  showTotalPerPerson.textContent = totalPerPerson.toFixed(2);
   console.log("Calculate button clicked!");
 });
