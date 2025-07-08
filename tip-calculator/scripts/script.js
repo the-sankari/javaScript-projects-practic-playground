@@ -41,24 +41,65 @@ const calculateButton = document.getElementById("calculateBtn");
 const billAmountInput = document.getElementById("billAmount");
 const tipPercentageInput = document.getElementById("tipPercentage");
 const numberOfPeopleInput = document.getElementById("numberOfPeople");
-const resultDisplay = document.getElementById("result");
+const resultDisplay = document.getElementById("results");
 
 calculateButton.addEventListener("click", () => {
   // Get the values from the input fields
   const billAmount = parseFloat(billAmountInput.value);
   const tipPercentage = parseFloat(tipPercentageInput.value);
+  const numberOfPeople = parseInt(numberOfPeopleInput.value, 10);
   if (
     billAmount <= 0 ||
     tipPercentage < 0 ||
     isNaN(billAmount) ||
-    isNaN(tipPercentage)
+    isNaN(tipPercentage) ||
+    numberOfPeople <= 0 ||
+    isNaN(numberOfPeople)
   ) {
     alert("Please enter valid bill amount and tip percentage.");
     return;
   }
 
   console.log(`Bill Amount: ${billAmount}, Tip Percentage: ${tipPercentage}`);
-  console.log(`Number of People: ${numberOfPeopleInput.value}`);
+  console.log(`Number of People: ${numberOfPeople}`);
+
+  // Calculate the tip amount
+  const tipAmount = billAmount * (tipPercentage / 100);
+
+  console.log(`Tip Amount: ${tipAmount}`);
+
+  // Calculate the total bill
+  const totalBill = billAmount + tipAmount;
+
+  console.log(`Total Bill: ${totalBill}`);
+
+  // Calculate the tip per person
+  const tipPerPerson = Math.round(tipAmount / numberOfPeople);
+  console.log(`Tip Per Person: ${tipPerPerson}`);
+
+  // Calculate the total bill per person
+  const totalPerPerson = (totalBill / numberOfPeople).toFixed(2);
+  console.log(`Total Per Person: ${totalPerPerson}`);
+
+  // Display the results
+  resultDisplay.innerHTML = `
+      <div class="result-item">
+        <span>Total Tip:</span>
+        <span>$${tipAmount.toFixed(2)}</span>
+      </div>
+      <div class="result-item">
+        <span>Total Bill:</span>
+        <span>$${totalBill.toFixed(2)}</span>
+      </div>
+      <div class="result-item">
+        <span>Tip Per Person:</span>
+        <span>$${tipPerPerson}</span>
+      </div>
+      <div class="result-item">
+        <span>Total Per Person:</span>
+        <span>$${totalPerPerson}</span>
+      </div>
+    `;
 
   console.log("Calculate button clicked!");
 });
