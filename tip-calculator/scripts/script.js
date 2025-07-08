@@ -39,7 +39,6 @@
 // Make something happen when the calculate button is clicked.
 const calculateButton = document.getElementById("calculateBtn");
 
-calculateButton /
-  addEventListener("click", () => {
-    console.log("Calculate button clicked!");
-  });
+calculateButton.addEventListener("click", () => {
+  console.log("Calculate button clicked!");
+});
