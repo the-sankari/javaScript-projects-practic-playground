@@ -85,6 +85,7 @@ const calculateTipValues = (billAmount, tipPercentage, numberOfPeople) => {
   // Calculate the total bill
   const totalBill = billAmount + tipAmount;
 
+  // Log the total bill
   console.log(`Total Bill: ${totalBill}`);
 
   // Calculate the tip per person
@@ -102,6 +103,15 @@ const calculateTipValues = (billAmount, tipPercentage, numberOfPeople) => {
   };
 };
 
+const updateDisplay = (totalBill, tipAmount, tipPerPerson, totalPerPerson) => {
+  // Display the results
+  showTotalBill.textContent = totalBill.toFixed(2);
+  showTotalTip.textContent = tipAmount.toFixed(2);
+  showTipPerPerson.textContent = tipPerPerson.toFixed(2);
+  showTotalPerPerson.textContent = totalPerPerson.toFixed(2);
+  console.log("Display updated with results.");
+};
+
 calculateButton.addEventListener("click", () => {
   // Get the input values
   const { billAmount, tipPercentage, numberOfPeople } = getInputValues();
@@ -117,9 +127,6 @@ calculateButton.addEventListener("click", () => {
     calculateTipValues(billAmount, tipPercentage, numberOfPeople);
 
   // Display the results
-  showTotalBill.textContent = totalBill.toFixed(2);
-  showTotalTip.textContent = tipAmount.toFixed(2);
-  showTipPerPerson.textContent = tipPerPerson.toFixed(2);
-  showTotalPerPerson.textContent = totalPerPerson.toFixed(2);
+  updateDisplay(totalBill, tipAmount, tipPerPerson, totalPerPerson);
   console.log("Calculate button clicked!");
 });
