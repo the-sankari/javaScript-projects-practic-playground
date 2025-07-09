@@ -38,6 +38,7 @@
 
 // Make something happen when the calculate button is clicked.
 const calculateButton = document.getElementById("calculateBtn");
+const resetButton = document.getElementById("resetBtn");
 const billAmountInput = document.getElementById("billAmount");
 const tipPercentageInput = document.getElementById("tipPercentage");
 const numberOfPeopleInput = document.getElementById("numberOfPeople");
@@ -103,6 +104,21 @@ const calculateTipValues = (billAmount, tipPercentage, numberOfPeople) => {
   };
 };
 
+// Reset the form inputs and results display
+const resetCalculator = () => {
+  // Clear the input fields
+  billAmountInput.value = "";
+  tipPercentageInput.value = "15"; // Reset to default tip percentage
+  numberOfPeopleInput.value = "1"; // Reset to default number of people
+  // Clear the results display
+  showTotalBill.textContent = "0.00";
+  showTotalTip.textContent = "0.00";
+  showTipPerPerson.textContent = "0.00";
+  showTotalPerPerson.textContent = "0.00";
+  billAmountInput.focus(); // Focus back on the bill amount input
+  console.log("Calculator reset.");
+};
+
 const updateDisplay = (totalBill, tipAmount, tipPerPerson, totalPerPerson) => {
   // Display the results
   showTotalBill.textContent = totalBill.toFixed(2);
@@ -112,7 +128,7 @@ const updateDisplay = (totalBill, tipAmount, tipPerPerson, totalPerPerson) => {
   console.log("Display updated with results.");
 };
 
-calculateButton.addEventListener("click", () => {
+const renderTipCalculator = () => {
   // Get the input values
   const { billAmount, tipPercentage, numberOfPeople } = getInputValues();
 
@@ -129,4 +145,12 @@ calculateButton.addEventListener("click", () => {
   // Display the results
   updateDisplay(totalBill, tipAmount, tipPerPerson, totalPerPerson);
   console.log("Calculate button clicked!");
+};
+
+calculateButton.addEventListener("click", () => {
+  renderTipCalculator();
+});
+
+resetButton.addEventListener("click", () => {
+  resetCalculator();
 });
