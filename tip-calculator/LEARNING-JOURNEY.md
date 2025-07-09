@@ -69,7 +69,7 @@ function handleCalculateClick()
 **Features Implemented:**
 
 - [x] Reset functionality with complete state clearing
-- [x] Custom tip percentage input with show/hide logic  
+- [x] Custom tip percentage input with show/hide logic
 - [x] Professional error handling system with specific validation
 - [x] User-friendly error display with auto-hide functionality
 - [x] Enhanced input validation covering all edge cases
@@ -77,12 +77,14 @@ function handleCalculateClick()
 - [x] Clean separation of concerns and single responsibility functions
 
 **Key Technical Achievements:**
+
 - Production-quality error handling system
 - Robust custom tip functionality
 - Professional UX patterns implementation
 - Clean code architecture with maintainable functions
 
 **Future Enhancements:**
+
 - [ ] Keyboard shortcuts (Enter to calculate, Escape to reset)
 - [ ] Input formatting (currency display with live formatting)
 - [ ] Loading states and smooth animations
