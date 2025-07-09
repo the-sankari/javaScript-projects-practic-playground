@@ -47,6 +47,18 @@ const showTipPerPerson = document.getElementById("tipPerPerson");
 const showTotalPerPerson = document.getElementById("totalPerPerson");
 const showTotalBill = document.getElementById("totalBill");
 
+const getInputValues = () => {
+  // Get the values from the input fields
+  const billAmount = parseFloat(billAmountInput.value);
+  const tipPercentage = parseFloat(tipPercentageInput.value);
+  const numberOfPeople = parseInt(numberOfPeopleInput.value, 10);
+  return {
+    billAmount: billAmount,
+    tipPercentage: tipPercentage,
+    numberOfPeople: numberOfPeople,
+  };
+};
+
 calculateButton.addEventListener("click", () => {
   // Get the values from the input fields
   const billAmount = parseFloat(billAmountInput.value);
