@@ -126,7 +126,6 @@ calculateButton.addEventListener("click", () => {
   const { totalBill, tipAmount, tipPerPerson, totalPerPerson } =
     calculateTipValues(billAmount, tipPercentage, numberOfPeople);
 
-  calculateTipValues(billAmount, tipPercentage, numberOfPeople);
   // Display the results
   showTotalBill.textContent = totalBill.toFixed(2);
   showTotalTip.textContent = tipAmount.toFixed(2);
