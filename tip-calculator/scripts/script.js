@@ -77,16 +77,6 @@ const validateInputs = (billAmount, tipPercentage, numberOfPeople) => {
 
 // Calculate the tip when the button is clicked
 const calculateTipValues = (billAmount, tipPercentage, numberOfPeople) => {
-  // Validate the inputs
-  const { isValid, message } = validateInputs(
-    billAmount,
-    tipPercentage,
-    numberOfPeople
-  );
-  if (!isValid) {
-    console.error("Validation Error: " + message);
-    return;
-  }
   // Calculate the tip amount
   const tipAmount = billAmount * (tipPercentage / 100);
 
