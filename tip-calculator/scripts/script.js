@@ -59,11 +59,8 @@ const getInputValues = () => {
   };
 };
 
-calculateButton.addEventListener("click", () => {
-  // Get the values from the input fields
-  const billAmount = parseFloat(billAmountInput.value);
-  const tipPercentage = parseFloat(tipPercentageInput.value);
-  const numberOfPeople = parseInt(numberOfPeopleInput.value, 10);
+// A validation function to ensure inputs are valid
+const validateInputs = (billAmount, tipPercentage, numberOfPeople) => {
   if (
     billAmount <= 0 ||
     tipPercentage < 0 ||
@@ -72,13 +69,24 @@ calculateButton.addEventListener("click", () => {
     numberOfPeople <= 0 ||
     isNaN(numberOfPeople)
   ) {
-    alert("Please enter valid bill amount and tip percentage.");
+    return { isValid: false, message: "Inputs are invalid." };
+  } else {
+    return { isValid: true, message: "Inputs are valid." };
+  }
+};
+
+// Calculate the tip when the button is clicked
+const calculateTipValues = (billAmount, tipPercentage, numberOfPeople) => {
+  // Validate the inputs
+  const { isValid, message } = validateInputs(
+    billAmount,
+    tipPercentage,
+    numberOfPeople
+  );
+  if (!isValid) {
+    console.error("Validation Error: " + message);
     return;
   }
-
-  console.log(`Bill Amount: ${billAmount}, Tip Percentage: ${tipPercentage}`);
-  console.log(`Number of People: ${numberOfPeople}`);
-
   // Calculate the tip amount
   const tipAmount = billAmount * (tipPercentage / 100);
 
@@ -96,7 +104,29 @@ calculateButton.addEventListener("click", () => {
   // Calculate the total bill per person
   const totalPerPerson = totalBill / numberOfPeople;
   console.log(`Total Per Person: ${totalPerPerson}`);
+  return {
+    totalBill: totalBill,
+    tipAmount: tipAmount,
+    tipPerPerson: tipPerPerson,
+    totalPerPerson: totalPerPerson,
+  };
+};
 
+calculateButton.addEventListener("click", () => {
+  // Get the input values
+  const { billAmount, tipPercentage, numberOfPeople } = getInputValues();
+
+  // validate the inputs
+  const validation = validateInputs(billAmount, tipPercentage, numberOfPeople);
+  if (!validation.isValid) {
+    console.error("Validation Error: " + validation.message);
+    return;
+  }
+  // Calculate the tip values
+  const { totalBill, tipAmount, tipPerPerson, totalPerPerson } =
+    calculateTipValues(billAmount, tipPercentage, numberOfPeople);
+
+  calculateTipValues(billAmount, tipPercentage, numberOfPeople);
   // Display the results
   showTotalBill.textContent = totalBill.toFixed(2);
   showTotalTip.textContent = tipAmount.toFixed(2);
