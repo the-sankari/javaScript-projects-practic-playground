@@ -260,3 +260,12 @@ calculateButton.addEventListener("click", () => {
 resetButton.addEventListener("click", () => {
   resetCalculator();
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent form submission on Enter key
+    renderTipCalculator(); // Call the function to calculate tip
+  } else if (event.key === "Escape") {
+    resetCalculator(); // Call the function to reset the calculator
+  }
+});
