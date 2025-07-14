@@ -7,9 +7,9 @@ This project implements a simple digital clock using HTML, CSS, and JavaScript. 
 ```
 digital-clock
 ├── src
-│   ├── index.html      # The main HTML file containing the clock structure
 │   ├── styles.css      # The CSS file for styling the clock
-│   └── script.js       # The JavaScript file that handles clock functionality
+│   └── script.js       # The JavaScript file that handles clock
+|── index.html      # The main HTML file containing the clock structure
 └── README.md           # This README file
 ```
 
