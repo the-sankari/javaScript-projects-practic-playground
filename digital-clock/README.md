@@ -19,7 +19,7 @@ To run the digital clock project, follow these steps:
 
 1. **Clone the repository** (if applicable):
    ```
-   git clone <repository-url>
+   git clone https://github.com/the-sankari/javaScript-projects-practic-playground
    ```
 
 2. **Navigate to the project directory**:
