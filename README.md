@@ -58,7 +58,6 @@ javascript-projects-practice-playground/
 - **Features**: Random hex color generation, smooth transitions, modern UI
 - **Tech**: HTML5, CSS3, Vanilla JavaScript
 - **Demo**: Open `color-flipper/index.html`
-- **[View Details](color-flipper/README.md)**
 
 ---
 
