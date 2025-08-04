@@ -8,6 +8,15 @@ loadUniversalNavbar();
 
 // Image Slider Code
 const container = document.querySelector("#container");
+
+// Array of image paths
+// Ensure these paths are correct relative to your HTML file
+// Adjust the paths if necessary based on your project structure
+// For example, if your images are in a folder named 'assets/img/players', the paths should be relative to that
+// If the images are in the same directory as this script,
+// you can use relative paths like './assets/img/players/image.jpg'
+// If the images are in a different directory, adjust the paths accordingly
+// Here, we assume the images are in 'assets/img/players' relative to the HTML file
 const images = [
   "./assets/img/players/akash.JPG",
   "./assets/img/players/nissan.JPG",
