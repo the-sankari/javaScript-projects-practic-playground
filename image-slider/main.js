@@ -159,6 +159,7 @@ const updateActiveDot = () => {
 const handleManualNavigation = (direction) => {
   stopAutoSlide(); // Stop auto-slide when user manually navigates
   direction === "next" ? nextSlide() : prevSlide();
+  
   setTimeout(() => {
     if (!document.querySelector(".slider-wrapper:hover")) {
       startAutoSlide(); // Resume auto-slide after a delay if not hovered
@@ -172,10 +173,51 @@ const addAutoPlayControls = () => {
   slidesContainer.addEventListener("mouseleave", startAutoSlide);
 };
 
+const keyboardControls = () => {
+  document.addEventListener("keydown", (event) => {
+    if (document.activeElement.tagName === "INPUT") return; // Ignore if input is focused
+    event.preventDefault(); // Prevent default behavior for arrow keys
+    switch (event.key) {
+      case "ArrowLeft":
+        prevSlide();
+        break;
+      case "ArrowRight":
+        nextSlide();
+        break;
+      case "1":
+        currentSlide = 0;
+        showSlide(currentSlide);
+        updateActiveDot();
+        break;
+      case "2":
+        currentSlide = 1;
+        showSlide(currentSlide);
+        updateActiveDot();
+        break;
+      case " ":
+        toggleAutoSlide(); // Toggle auto-slide on spacebar press
+        break;
+      case "Enter":
+        toggleAutoSlide(); // Toggle auto-slide on Enter key press
+        break;
+      default:
+        const keyNumber = parseInt(event.key);
+        if (keyNumber >= 1 && keyNumber <= images.length) {
+          currentSlide = keyNumber - 1; // Convert 1-based index to 0-based
+          showSlide(currentSlide);
+          updateActiveDot();
+        }
+        break;
+
+    }
+  });
+};
+
 createSlider();
 createSlides();
 createButtons();
 createDots();
 updateActiveDot(); // Initialize first dot as active
+keyboardControls();
 addAutoPlayControls();
 startAutoSlide();
