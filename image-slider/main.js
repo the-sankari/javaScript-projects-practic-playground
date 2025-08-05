@@ -95,11 +95,13 @@ const showSlide = (slideIndex) => {
 const nextSlide = () => {
   currentSlide = (currentSlide + 1) % images.length;
   showSlide(currentSlide);
+  updateActiveDot(); // Update active dot after changing slide
 };
 
 const prevSlide = () => {
   currentSlide = (currentSlide - 1 + images.length) % images.length;
   showSlide(currentSlide);
+  updateActiveDot(); // Update active dot after changing slide
 };
 
 const createButtons = () => {
@@ -123,6 +125,37 @@ const createButtons = () => {
   sliderWrapper.appendChild(nextBtn);
 };
 
+const createDots = () => {
+  const sliderWrapper = document.querySelector(".slider-wrapper");
+  const dotsContainer = document.createElement("div");
+  dotsContainer.className = "dots-container";
+
+  images.forEach((_, index) => {
+    const dots = document.createElement("div");
+    dots.className = "dot";
+    dots.addEventListener("click", () => {
+      stopAutoSlide(); // Stop auto-slide when user clicks a dot
+      currentSlide = index; // Set current slide to the clicked dot's index
+      showSlide(currentSlide); // Show the corresponding slide
+      updateActiveDot(); // Update active dot after changing slide
+      setTimeout(() => {
+        if (!document.querySelector(".slider-wrapper:hover")) {
+          startAutoSlide(); // Resume auto-slide after a delay if not hovered
+        }
+      }, intervalTime);
+    });
+    dotsContainer.appendChild(dots);
+  });
+  sliderWrapper.appendChild(dotsContainer);
+};
+
+const updateActiveDot = () => {
+  const dots = document.querySelectorAll(".dot");
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
+};
+
 const handleManualNavigation = (direction) => {
   stopAutoSlide(); // Stop auto-slide when user manually navigates
   direction === "next" ? nextSlide() : prevSlide();
@@ -142,5 +175,7 @@ const addAutoPlayControls = () => {
 createSlider();
 createSlides();
 createButtons();
+createDots();
+updateActiveDot(); // Initialize first dot as active
 addAutoPlayControls();
 startAutoSlide();

@@ -13,6 +13,7 @@
 }
 .slides-container:hover {
   cursor: pointer; /* Change cursor on hover */
+
 }
 
 .slide {
@@ -58,4 +59,34 @@ button {
 }
 .prev-btn {
   left: 10px; /* Position left */
+}
+/* Add this after your button styles */
+
+.dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(180, 26, 26, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+  width: 12px;
+  height: 12px;
+  background-color: white;
 }
