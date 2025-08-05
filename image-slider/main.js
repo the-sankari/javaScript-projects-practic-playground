@@ -5,7 +5,6 @@ import loadUniversalNavbar from "../js/universalNavbar.js";
 // Load the universal navbar (it will auto-detect the correct path)
 loadUniversalNavbar();
 
-
 // Image Slider Code
 const container = document.querySelector("#container");
 
@@ -31,6 +30,28 @@ const images = [
 
 let currentSlide = 0;
 
+let autoPlayTimer = null;
+let isAutoPlaying = false;
+let intervalTime = 3000; // 3 seconds
+
+const startAutoSlide = () => {
+  if (!isAutoPlaying) {
+    autoPlayTimer = setInterval(nextSlide, intervalTime);
+  }
+  isAutoPlaying = true; // Set auto-playing state
+};
+const stopAutoSlide = () => {
+  clearInterval(autoPlayTimer);
+  isAutoPlaying = false;
+};
+const toggleAutoSlide = () => {
+  if (isAutoPlaying) {
+    stopAutoSlide();
+  } else {
+    startAutoSlide();
+  }
+};
+
 const createSlider = () => {
   const sliderWrapper = document.createElement("div");
   sliderWrapper.className = "slider-wrapper";
@@ -46,15 +67,15 @@ const createSlides = () => {
   const totalSlides = images.length;
   const containerWidth = totalSlides * 100; // 100% for each slide
   const slideWidth = 100 / totalSlides; // Each slide takes equal width
-
   slidesContainer.style.width = `${containerWidth}%`;
 
   images.forEach((image) => {
     const slide = document.createElement("div");
     slide.className = "slide";
     slide.style.width = `${slideWidth}%`;
-    slide.style.background = `url(${image}) no-repeat center center`;
-    slide.style.backgroundSize = "cover";
+    const cssRelativePath = image.replace("./", "../");
+
+    slide.style.setProperty("--bg-image", `url(${cssRelativePath})`); // Set background image using CSS variable
 
     const imgElement = document.createElement("img");
     imgElement.src = image;
@@ -87,17 +108,39 @@ const createButtons = () => {
   const prevBtn = document.createElement("button");
   prevBtn.textContent = "❮";
   prevBtn.className = "nav-btn prev-btn";
-  prevBtn.addEventListener("click", prevSlide);
+  prevBtn.addEventListener("click", () => {
+    handleManualNavigation("prev");
+  });
 
   const nextBtn = document.createElement("button");
   nextBtn.textContent = "❯";
   nextBtn.className = "nav-btn next-btn";
-  nextBtn.addEventListener("click", nextSlide);
+  nextBtn.addEventListener("click", () => {
+    handleManualNavigation("next");
+  });
 
   sliderWrapper.appendChild(prevBtn);
   sliderWrapper.appendChild(nextBtn);
 };
 
+const handleManualNavigation = (direction) => {
+  stopAutoSlide(); // Stop auto-slide when user manually navigates
+  direction === "next" ? nextSlide() : prevSlide();
+  setTimeout(() => {
+    if (!document.querySelector(".slider-wrapper:hover")) {
+      startAutoSlide(); // Resume auto-slide after a delay if not hovered
+    }
+  }, intervalTime);
+};
+
+const addAutoPlayControls = () => {
+  const slidesContainer = document.querySelector(".slides-container");
+  slidesContainer.addEventListener("mouseenter", stopAutoSlide);
+  slidesContainer.addEventListener("mouseleave", startAutoSlide);
+};
+
 createSlider();
 createSlides();
 createButtons();
+addAutoPlayControls();
+startAutoSlide();
