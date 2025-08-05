@@ -78,30 +78,113 @@ const createSlides = () => {
     slide.style.setProperty("--bg-image", `url(${cssRelativePath})`); // Set background image using CSS variable
 
     const imgElement = document.createElement("img");
-    imgElement.src = image;
+    imgElement.dataset.src = image; // Use data-src for lazy loading
+    imgElement.src =
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3C/svg%3E"; // Placeholder
     imgElement.alt = "Image Slide";
+    imgElement.classList.add("lazy-image"); // Add class for lazy loading
     slide.appendChild(imgElement);
     slidesContainer.appendChild(slide);
   });
+  // Lazy load images
+  initializeLazyLoading();
+};
+const initializeLazyLoading = () => {
+  const lazyImages = document.querySelectorAll(".lazy-image");
+
+  if ("IntersectionObserver" in window) {
+    // Load first image immediately
+    if (lazyImages[0]) {
+      loadImage(lazyImages[0]);
+    }
+
+    const lazyImageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            loadImage(img);
+            observer.unobserve(img);
+          }
+        });
+      },
+      {
+        // Reduce rootMargin for faster loading
+        rootMargin: "50px",
+      }
+    );
+
+    // Skip first image in observer (already loaded)
+    lazyImages.forEach((img, index) => {
+      if (index > 0) {
+        // Skip first image
+        lazyImageObserver.observe(img);
+      }
+    });
+  } else {
+    // Fallback for browsers that do not support IntersectionObserver
+    lazyImages.forEach((img) => {
+      loadImage(img);
+    });
+  }
 };
 
-const showSlide = (slideIndex) => {
-  const slidesContainer = document.querySelector(".slides-container");
-  const slideWidth = 100 / images.length; // Each slide is 20% of container
-  const offset = -slideIndex * slideWidth; // Calculate offset based on index
-  slidesContainer.style.transform = `translateX(${offset}%)`;
+// Helper function to load individual image
+const loadImage = (img) => {
+  if (img.dataset.src && !img.classList.contains("loaded")) {
+    const actualSrc = img.dataset.src;
+
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      img.src = actualSrc;
+      img.classList.remove("lazy-image");
+      img.classList.add("loaded");
+    };
+    tempImg.src = actualSrc;
+  }
+};
+// Optional: Preload adjacent slides when navigating
+const preloadAdjacentSlides = (currentIndex) => {
+  const adjacentIndices = [currentIndex - 1, currentIndex + 1];
+
+  adjacentIndices.forEach((index) => {
+    if (index >= 0 && index < images.length) {
+      const slide = document.querySelectorAll(".slide")[index];
+      const img = slide?.querySelector(".lazy-image");
+
+      if (img && img.dataset.src) {
+        // Force load adjacent images
+        const tempImg = new Image();
+        tempImg.onload = () => {
+          img.src = img.dataset.src;
+          img.classList.remove("lazy-image");
+          img.classList.add("loaded");
+        };
+        tempImg.src = img.dataset.src;
+      }
+    }
+  });
 };
 
+// Update navigation functions to preload
 const nextSlide = () => {
   currentSlide = (currentSlide + 1) % images.length;
   showSlide(currentSlide);
-  updateActiveDot(); // Update active dot after changing slide
+  updateActiveDot();
+  preloadAdjacentSlides(currentSlide); // Preload next slides
 };
 
 const prevSlide = () => {
   currentSlide = (currentSlide - 1 + images.length) % images.length;
   showSlide(currentSlide);
-  updateActiveDot(); // Update active dot after changing slide
+  updateActiveDot();
+  preloadAdjacentSlides(currentSlide); // Preload next slides
+};
+const showSlide = (slideIndex) => {
+  const slidesContainer = document.querySelector(".slides-container");
+  const slideWidth = 100 / images.length; // Each slide is 20% of container
+  const offset = -slideIndex * slideWidth; // Calculate offset based on index
+  slidesContainer.style.transform = `translateX(${offset}%)`;
 };
 
 const createButtons = () => {
@@ -230,7 +313,7 @@ const addTouchControls = () => {
   slidesContainer.addEventListener("touchmove", (e) => {
     const currentX = e.touches[0].clientX;
     const moveDistance = Math.abs(startX - currentX);
-    
+
     // Only prevent scrolling if it's a horizontal swipe
     if (moveDistance > 10) {
       e.preventDefault();
@@ -240,19 +323,19 @@ const addTouchControls = () => {
 
   slidesContainer.addEventListener("touchend", (e) => {
     if (!isSwipe) return; // Exit if no swipe detected
-    
+
     const endX = e.changedTouches[0].clientX;
     const endTime = Date.now();
-    
+
     const distanceX = startX - endX;
     const timeDiff = endTime - startTime;
-    
+
     console.log("Swipe distance:", distanceX, "Time:", timeDiff); // Debug log
-    
+
     // Swipe detection thresholds
     const minSwipeDistance = 30; // Reduced threshold
     const maxSwipeTime = 500; // Increased time
-    
+
     if (Math.abs(distanceX) > minSwipeDistance && timeDiff < maxSwipeTime) {
       if (distanceX > 0) {
         console.log("Next slide"); // Debug log
@@ -262,7 +345,7 @@ const addTouchControls = () => {
         prevSlide();
       }
     }
-    
+
     // Resume auto-play
     setTimeout(() => {
       if (!document.querySelector(".slider-wrapper:hover")) {
