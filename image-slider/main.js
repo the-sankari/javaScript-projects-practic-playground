@@ -159,7 +159,7 @@ const updateActiveDot = () => {
 const handleManualNavigation = (direction) => {
   stopAutoSlide(); // Stop auto-slide when user manually navigates
   direction === "next" ? nextSlide() : prevSlide();
-  
+
   setTimeout(() => {
     if (!document.querySelector(".slider-wrapper:hover")) {
       startAutoSlide(); // Resume auto-slide after a delay if not hovered
@@ -208,8 +208,67 @@ const keyboardControls = () => {
           updateActiveDot();
         }
         break;
-
     }
+  });
+};
+
+const addTouchControls = () => {
+  const slidesContainer = document.querySelector(".slides-container");
+
+  let startX = 0;
+  let startTime = 0;
+  let isSwipe = false;
+
+  slidesContainer.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    startTime = Date.now();
+    isSwipe = false;
+    stopAutoSlide();
+    console.log("Touch started at:", startX); // Debug log
+  });
+
+  slidesContainer.addEventListener("touchmove", (e) => {
+    const currentX = e.touches[0].clientX;
+    const moveDistance = Math.abs(startX - currentX);
+    
+    // Only prevent scrolling if it's a horizontal swipe
+    if (moveDistance > 10) {
+      e.preventDefault();
+      isSwipe = true;
+    }
+  });
+
+  slidesContainer.addEventListener("touchend", (e) => {
+    if (!isSwipe) return; // Exit if no swipe detected
+    
+    const endX = e.changedTouches[0].clientX;
+    const endTime = Date.now();
+    
+    const distanceX = startX - endX;
+    const timeDiff = endTime - startTime;
+    
+    console.log("Swipe distance:", distanceX, "Time:", timeDiff); // Debug log
+    
+    // Swipe detection thresholds
+    const minSwipeDistance = 30; // Reduced threshold
+    const maxSwipeTime = 500; // Increased time
+    
+    if (Math.abs(distanceX) > minSwipeDistance && timeDiff < maxSwipeTime) {
+      if (distanceX > 0) {
+        console.log("Next slide"); // Debug log
+        nextSlide();
+      } else {
+        console.log("Previous slide"); // Debug log
+        prevSlide();
+      }
+    }
+    
+    // Resume auto-play
+    setTimeout(() => {
+      if (!document.querySelector(".slider-wrapper:hover")) {
+        startAutoSlide();
+      }
+    }, 2000);
   });
 };
 
@@ -219,5 +278,6 @@ createButtons();
 createDots();
 updateActiveDot(); // Initialize first dot as active
 keyboardControls();
+addTouchControls();
 addAutoPlayControls();
 startAutoSlide();
