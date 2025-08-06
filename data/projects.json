@@ -3,105 +3,99 @@
     "name": "Counter App",
     "description": "A simple counter application to increment and decrement a number.",
     "url": "counter-app/",
-    "image": "https://picsum.photos/seed/counter/300/200",
+    "image": "../assets/img/counter-app.png",
     "category": "Beginner"
   },
   {
     "name": "Todo App",
     "description": "A basic todo list application to manage tasks.",
     "url": "todo-app/",
-    "image": "https://picsum.photos/seed/todo/300/200",
+    "image": "../assets/img/todo-app.png",
     "category": "Beginner"
   },
   {
     "name": "Calculator",
     "description": "Perform basic math operations like addition, subtraction, multiplication, and division.",
     "url": "calculator/",
-    "image": "https://picsum.photos/seed/calculator/300/200",
+    "image": "../assets/img/calculator.png",
     "category": "Beginner"
   },
   {
     "name": "Tip Calculator",
     "description": "Calculate the tip amount based on bill and selected percentage.",
     "url": "tip-calculator/",
-    "image": "https://picsum.photos/seed/tip-calculator/300/200",
+    "image": "../assets/img/tip-calculator.png",
     "category": "Beginner"
   },
   {
     "name": "Digital Clock",
     "description": "A live digital clock that displays the current time in HH:MM:SS format.",
     "url": "digital-clock/",
-    "image": "https://picsum.photos/seed/digital-clock/300/200",
+    "image": "../assets/img/digital-clock.png",
     "category": "Beginner"
   },
   {
     "name": "Color Flipper",
     "description": "Click to change the background to a random color each time.",
     "url": "color-flipper/",
-    "image": "https://picsum.photos/seed/color-flipper/300/200",
+    "image": "../assets/img/color-flipper.png",
     "category": "Beginner"
   },
   {
     "name": "Image Slider",
     "description": "An automatic and manual carousel to slide through images.",
     "url": "image-slider/",
-    "image": "https://picsum.photos/seed/image-slider/300/200",
+    "image": "../assets/img/image-slider.png",
     "category": "Intermediate"
   },
   {
     "name": "Accordion / FAQ",
     "description": "A collapsible accordion to show/hide answers to frequently asked questions.",
     "url": "accordion-faq/",
-    "image": "https://picsum.photos/seed/accordion/300/200",
+    "image": "../assets/img/accordion-faq.png",
     "category": "Intermediate"
   },
   {
     "name": "Quote Generator",
     "description": "Displays a random quote from a predefined list of quotes.",
     "url": "quote-generator/",
-    "image": "https://picsum.photos/seed/quote-generator/300/200",
+    "image": "../assets/img/quote-generator.png",
     "category": "Intermediate"
   },
   {
     "name": "Palindrome Checker",
     "description": "Check if a word or phrase is a palindrome.",
     "url": "palindrome-checker/",
-    "image": "https://picsum.photos/seed/palindrome/300/200",
+    "image": "../assets/img/palindrome-checker.png",
     "category": "Intermediate"
   },
   {
     "name": "Currency Converter",
     "description": "Convert between different currencies using an exchange rate API.",
     "url": "currency-converter/",
-    "image": "https://picsum.photos/seed/currency-converter/300/200",
+    "image": "../assets/img/currency-converter.png",
     "category": "Intermediate"
   },
   {
     "name": "Form Validation",
     "description": "A simple form with input validation using regex.",
     "url": "form-validation/",
-    "image": "https://picsum.photos/seed/form-validation/300/200",
+    "image": "../assets/img/form-validation.png",
     "category": "Intermediate"
   },
   {
     "name": "BMI Calculator",
     "description": "Calculate Body Mass Index and show health category.",
     "url": "bmi-calculator/",
-    "image": "https://picsum.photos/seed/bmi-calculator/300/200",
+    "image": "../assets/img/bmi-calculator.png",
     "category": "Intermediate"
   },
   {
     "name": "Image Gallery with Modal",
     "description": "Click on an image to view a larger version in a modal popup.",
     "url": "image-gallery/",
-    "image": "https://picsum.photos/seed/image-gallery/300/200",
-    "category": "Intermediate"
-  },
-  {
-    "name": "Local Storage To-Do",
-    "description": "To-do list app with localStorage support for data persistence.",
-    "url": "localstorage-todo/",
-    "image": "https://picsum.photos/seed/localstorage-todo/300/200",
+    "image": "../assets/img/image-gallery.png",
     "category": "Intermediate"
   }
+
 ]
