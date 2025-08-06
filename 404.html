@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Oops! Project Not Found | JavaScript Playground</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/404.css" />
+  </head>
+  <body>
+    <div class="error-container">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-message">🚧 Oops! This Project Isn't Ready Yet</h2>
+      <p class="error-description">
+        Looks like you've wandered into uncharted territory of my JavaScript
+        playground! The project you're looking for might be under construction,
+        or perhaps you took a wrong turn while exploring my code adventures. No
+        worries though - there's plenty of cool stuff to discover!
+      </p>
+
+      <div class="action-buttons">
+        <a href="index.html" class="btn btn-primary">
+          <i class="fas fa-home"></i>
+          Back to Playground
+        </a>
+        <a href="javascript:history.back()" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i>
+          Go Back
+        </a>
+      </div>
+
+      <div class="project-suggestions">
+        <h3>🎯 Try These Available Projects Instead:</h3>
+        <div class="project-list">
+          <a href="calculator/" class="project-link">
+            <i class="fas fa-calculator"></i> Calculator
+          </a>
+          <a href="counter-app/" class="project-link">
+            <i class="fas fa-plus-minus"></i> Counter App
+          </a>
+          <a href="color-flipper/" class="project-link">
+            <i class="fas fa-palette"></i> Color Flipper
+          </a>
+          <a href="digital-clock/" class="project-link">
+            <i class="fas fa-clock"></i> Digital Clock
+          </a>
+          <a href="todo-app/" class="project-link">
+            <i class="fas fa-tasks"></i> Todo App
+          </a>
+          <a href="tip-calculator/" class="project-link">
+            <i class="fas fa-money-bill-wave"></i> Tip Calculator
+          </a>
+          <a href="image-slider/" class="project-link">
+            <i class="fas fa-images"></i> Image Slider
+          </a>
+        </div>
+      </div>
+
+      <div class="fun-fact">
+        <i class="fas fa-lightbulb"></i>
+        <strong>Fun Fact:</strong> HTTP 404 errors got their name from the room
+        number at CERN where the original web servers were located. Now you
+        know! 🤓
+      </div>
+
+      <p class="error-footer-text">
+        <i class="fas fa-code"></i>
+        Keep coding and exploring! Every error is a learning opportunity.
+      </p>
+    </div>
+
+    <footer class="footer">
+      <p>🚀 Built with ❤️ using HTML, CSS & JavaScript</p>
+      <div class="footer-socials">
+        <a href="https://github.com/the-sankari" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/kajol-sutra-dhar"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          href="https://kajol-sutra-dhar.vercel.app/"
+          target="_blank"
+          title="Portfolio"
+        >
+          <i class="fas fa-globe"></i>
+        </a>
+        <a href="index.html" class="back-to-top" title="Back to Home">🏠</a>
+      </div>
+      <p>&copy; <span id="year"></span> JavaScript Projects Playground</p>
+    </footer>
+
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Add some interactive flair
+      document
+        .querySelector(".error-code")
+        .addEventListener("click", function () {
+          this.style.transform = "rotate(360deg)";
+          this.style.transition = "transform 0.8s ease-in-out";
+          setTimeout(() => {
+            this.style.transform = "rotate(0deg)";
+          }, 800);
+        });
+    </script>
+  </body>
+</html>
