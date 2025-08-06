@@ -4,88 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tip Calculator</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css">
   </head>
   <body>
-    <header>
-      <h1>Tip Calculator</h1>
-    </header>
-    <main class="container">
-      <!-- Input Section -->
-      <div class="calculator-card">
-        <div class="input-group">
-          <label for="billAmount">Bill Amount ($)</label>
+    <div class="container">
+      <div class="header">
+        <h1>💰 Tip Calculator</h1>
+        <p>Calculate tips and split bills easily</p>
+      </div>
+
+      <!-- Message section for errors -->
+      <div id="message">
+        <p id="messageText"></p>
+      </div>
+
+      <form id="tipForm">
+        <div class="form-group">
+          <label for="billAmount">Bill Amount</label>
           <input
             type="number"
             id="billAmount"
-            placeholder="Enter bill amount"
-            min="0"
             step="0.01"
+            min="0"
+            placeholder="Enter bill amount"
           />
         </div>
 
-        <div class="input-group">
+        <div class="form-group">
           <label for="tipPercentage">Tip Percentage</label>
           <select id="tipPercentage">
-            <option value="0" disabled >Select Tip Percentage</option>
-            <option value="custom">Custom</option>
+            <option value="5">5%</option>
             <option value="10">10%</option>
-            <option value="15" selected >15%</option>
+            <option value="15" selected>15%</option>
             <option value="18">18%</option>
             <option value="20">20%</option>
             <option value="25">25%</option>
+            <option value="custom">Custom</option>
           </select>
-          <div class="input-group" id="customTipGroup" style="display: none">
-            <label for="customTipInput">Enter Custom Tip (%)</label>
-            <input
-              type="number"
-              id="customTipInput"
-              placeholder="Enter tip percentage"
-              min="0"
-              max="100"
-              step="0.1"
-            />
-          </div>
         </div>
 
-        <div class="input-group">
+        <div id="customTipGroup" class="form-group">
+          <label for="customTipInput">Custom Tip Percentage</label>
+          <input
+            type="number"
+            id="customTipInput"
+            step="0.1"
+            min="0"
+            placeholder="Enter custom tip %"
+          />
+        </div>
+
+        <div class="form-group">
           <label for="numberOfPeople">Number of People</label>
-          <input type="number" id="numberOfPeople" value="1" min="1" step="1" />
+          <input
+            type="number"
+            id="numberOfPeople"
+            min="1"
+            value="1"
+            placeholder="Number of people"
+          />
         </div>
 
-        <button id="calculateBtn">Calculate Tip</button>
-        <button id="resetBtn">Reset</button>
-
-        <!-- Message Section -->
-        <div class="message" id="message">
-          <!-- This section will display messages to the user -->
-          <p id="messageText">Note:  </p>
+        <div class="button-group">
+          <button type="button" id="calculateBtn">Calculate</button>
+          <button type="button" id="resetBtn">Reset</button>
         </div>
-        <!-- Results Section -->
-        <div id="results" class="results-section">
-          <h3>Results</h3>
-          <div class="result-item">
-            <span>Total Bill:</span>
-            <span id="totalBill">$0.00</span>
-          </div>
-          <div class="result-item">
-            <span>Total Tip:</span>
-            <span id="totalTip">$0.00</span>
-          </div>
-          <div class="result-item">
-            <span>Tip Per Person:</span>
-            <span id="tipPerPerson">$0.00</span>
-          </div>
-          <div class="result-item">
-            <span>Total Per Person:</span>
-            <span id="totalPerPerson">$0.00</span>
-          </div>
+      </form>
+
+      <div class="results" id="results">
+        <h3>💡 Results</h3>
+        <div class="result-item">
+          <span class="result-label">Total Bill:</span>
+          <span class="result-value" id="totalBill">0.00</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Total Tip:</span>
+          <span class="result-value" id="totalTip">0.00</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Tip Per Person:</span>
+          <span class="result-value" id="tipPerPerson">0.00</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Total Per Person:</span>
+          <span class="result-value" id="totalPerPerson">0.00</span>
         </div>
       </div>
-    </main>
-    <footer>
-      <p>&copy;2025 Tip Calculator</p>
-    </footer>
-    <script src="./scripts/script.js"></script>
+    </div>
+
+    <script src="scripts/script.js"></script>
   </body>
 </html>
