@@ -31,14 +31,14 @@ javascript-projects-practice-playground/
 
 | No. | Project Name             | Description                          | Status           |
 | --- | ------------------------ | ------------------------------------ | ---------------- |
-| 1.  | Counter App              | Basic increment/decrement buttons    | ⏳ Planning      |
-| 2.  | To-Do List               | Add, remove, mark tasks as done      | ⏳ Planning      |
-| 3.  | Calculator               | Basic math operations                | ⏳ Planning      |
-| 4.  | Tip Calculator           | Calculate tips based on input        | ⏳ Planning      |
-| 5.  | Digital Clock            | Live updating time display           | ⏳ Planning      |
+| 1.  | **Counter App**              | **Basic increment/decrement buttons**    | ✅ **Completed** |
+| 2.  | **To-Do List**               | **Add, remove, mark tasks as done**      | ✅ **Completed** |
+| 3.  | **Calculator**               | **Basic math operations**                | ✅ **Completed** |
+| 4.  | **Tip Calculator**           | **Calculate tips based on input**        | ✅ **Completed** |
+| 5.  | **Digital Clock**            | **Live updating time display**           | ✅ **Completed** |
 | 6.  | **Color Flipper**        | **Random background color on click** | ✅ **Completed** |
 | 7.  | **Image Slider**         | **Advanced carousel with 5 features** | ✅ **Completed** |
-| 8.  | Accordion / FAQ          | Expand/collapse items                | ⏳ Planning      |
+| 8.  | **Accordion / FAQ**          |**Expand/collapse items**                | ✅ **Completed** |
 | 9.  | Quote Generator          | Show random quote from list          | ⏳ Planning      |
 | 10. | Palindrome Checker       | Check if word is a palindrome        | ⏳ Planning      |
 | 11. | Currency Converter       | Convert between currencies using API | ⏳ Planning      |
