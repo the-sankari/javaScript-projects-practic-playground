@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting...</title>
-    <script>
-      // Immediate redirect to 404 page
-      window.location.replace("../404.html");
-    </script>
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <p>Project under construction. Redirecting...</p>
+    <main class="container">
+      <h1>Random Quote Generator</h1>
+      <div class="quote-box">
+        <p class="quote-text" id="quote">
+          Click the button to generate a quote!
+        </p>
+        <p class="author-text" id="author"></p> <button id="new-quote-btn">New Quote</button>
+      </div>
+    </main>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
