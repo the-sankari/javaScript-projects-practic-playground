@@ -1,1 +1,26 @@
 @import url("../css/global.css");
+
+.faq-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.faq-question {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.faq-answer {
+  display: none;
+  padding: 8px 0;
+}
+
+.faq-answer.active {
+  display: block;
+}
